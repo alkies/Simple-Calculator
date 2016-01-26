@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<title>Calculator</title>
+<style>
+html, body {
+width: 100%;
+height: 100%;
+margin: 5px;
+border: 0;
+overflow: hidden; /*  Disable scrollbars */
+display: block;  /* No floating content on sides */
+}
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class = "display"><input type = "text" style="text-align: right" readonly size="20" id="btn"></div>
+
+
+<br>
+ <button id="btn_clear" style="width:30px">C</button>
+ <button id="btn_Backspace" style="width:30px"><</button>
+ <button id="btn_empt" style="width:30px" > </button>
+  <button id="btn_div" style="width:30px" >/</button>
+<br>
+ <button id="btn_7" style="width:30px" onclick="btn.value+=7">7</button>
+ <button id="btn_8" style="width:30px" onclick="btn.value+=8">8</button>
+ <button id="btn_9" style="width:30px" onclick="btn.value+=9">9</button>
+ <button id="btn_maal" style="width:30px" >*</button>
+<br>
+ <button id="btn_4" style="width:30px" onclick="btn.value+=4">4</button>
+ <button id="btn_5" style="width:30px" onclick="btn.value+=5">5</button>
+ <button id="btn_6" style="width:30px" onclick="btn.value+=6">6</button>
+ <button id="btn_min" style="width:30px" >-</button>
+<br>
+ <button id="btn_1" style="width:30px" onclick="btn.value+=1">1</button>
+ <button id="btn_2" style="width:30px" onclick="btn.value+=2">2</button>
+ <button id="btn_3" style="width:30px" onclick="btn.value+=3">3</button>
+ <button id="btn_plus" style="width:30px" >+</button>
+<br>
+ <button id="btn_0" style="width:64px" onclick="btn.value+=0">0</button>
+ <button id="btn_dot" style="width:30px"">.</button>
+ <button id="btn_equals" style="width:30px">=</button>
+
+
+
+<script src="js/zepto.js"> </script>
+<script src="js/calculator.js"> </script>
+<script>
+
+$('#btn_Backspace').click(function(){
+        var s=String(btn.value);
+
+        if(s.substring(s.length-1,s.length) === '.')
+         {
+		clearDot();
+	 }
+	s=s.substring(0,s.length-1);
+	btn.value=s;	
+});
+
+$('#btn_clear').click(function(){		
+	clearDot();
+	clearVal();	
+	btn.value='';		
+});
+
+$('#btn_plus').click(function(){		
+	setval1(btn.value);
+	setx('+');	
+	btn.value='';		
+});
+
+
+$('#btn_min').click(function(){		
+	setval1(btn.value);
+	setx('-');	
+btn.value='';		
+});
+
+$('#btn_maal').click(function(){		
+	setval1(btn.value);
+	setx('*');		
+btn.value='';	
+});
+
+$('#btn_div').click(function(){		
+	setval1(btn.value);
+	setx('/');	
+btn.value='';	
+});
+
+$('#btn_equals').click(function(){		
+	setval2(btn.value);
+	btn.value= getAnswer();		
+});
+
+$('#btn_dot').click(function(){
+	btn.value+=handelDot(btn.value);       		
+});
+
+</script>
+</body>
+</html>
